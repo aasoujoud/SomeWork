@@ -8,3 +8,12 @@ CREATE TABLE IF NOT EXISTS midterm (
   carYear int NOT NULL,
   PRIMARY KEY (cid)
 );
+
+inserting some values to start with at least...
+
+INSERT INTO midterm
+    (cid, carMake,carModel,carPrice,carYear)
+VALUES
+       (NULL,'Tesla','Model X',79000.00,2018 ),
+       (NULL,'Telsa','model 3',49000.00,2018 ),
+       (NULL,'Ford','Escape',25000.00,2018 );
