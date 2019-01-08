@@ -1,0 +1,463 @@
+import javax.swing.*; 
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.JFrame;
+import static java.lang.Math.*;
+import java.io.IOException;
+import java.io.*;
+import javax.swing.JOptionPane;
+
+class Triangle{
+      public double answer; 
+      public double nintyDegree = 90;
+      public double angleA;
+      public double sideA;
+      public double sideC;
+      public double sideB;
+      public double angleB;
+      public double angleC;
+      
+      public Triangle(){} ;  // didn't need inhertitance much but here i use it!
+      public double getAnswer(){return answer;}  // this is the main answer, all other sides/angles are found for this program .
+      public double getAngleC(){return nintyDegree;}
+      public double getAngleA(){return angleA;}
+      public double getSideA(){return sideA;}
+      public double getSideC(){return sideC;}
+      public double getSideB(){return sideB;}
+      public double getAngleB(){return angleB;}
+      public double getAngleC2(){return angleC;}
+}
+class rightTriangle extends Triangle{
+      private double inputSA; // Side angle input 1
+      private double inputSA1; // Side angle input 2
+      
+      public rightTriangle(double inputSA, double inputSA1){  
+         this.inputSA = inputSA;
+         this.inputSA1 = inputSA1; 
+      }
+          
+      public void solveSideAngle(){
+         angleA = 180 - (nintyDegree + inputSA1);
+         inputSA1 = Math.toRadians(inputSA1);  // overloading inputSA1 variable.. recycling it! save the eco-system, recycle. 
+         sideC = Math.round(inputSA / Math.cos(inputSA1)); 
+         answer = Math.round(inputSA * Math.tan(inputSA1)); // Remember all answer are rounded....
+      }  
+      
+      public void solveOppSideAngle(){
+         angleA = 180 - (nintyDegree + inputSA1); 
+         angleA = Math.round((angleA)* 100.0) / 100.0;
+         inputSA1 = Math.toRadians(inputSA1);
+         sideC = Math.round(inputSA / Math.sin(inputSA1));
+         answer = Math.round(inputSA / Math.tan(inputSA1));// my math teacher makes us round everyhine, else i would have formatted them.
+      }  
+      
+      public void solveSideSide(){
+         double inputSA1copy = inputSA1;
+         inputSA1 = Math.atan((inputSA / inputSA1));
+         sideC = Math.toDegrees(inputSA1);
+         sideC = Math.round(inputSA1copy / Math.cos(sideC)); // law of cos
+         answer =   Math.round(Math.toDegrees((inputSA1)* 100.0) / 100.0); 
+         angleB =  Math.round(180 - ((nintyDegree + answer)* 100.0) / 100.0); 
+      }  
+      
+      public void solveHypAngle(){
+         angleA = 180 - (nintyDegree + inputSA1);
+         angleA = Math.round(angleA * 100.0) / 100.0;
+         inputSA1 = Math.toRadians(inputSA1);
+         sideB = Math.round(inputSA * Math.sin(inputSA1));
+         answer = Math.round(inputSA*(Math.cos(inputSA1)));
+      }
+}
+
+
+class nonRightTriangle extends Triangle{
+      public double nintyDegree = 90;
+      private double inputSA; 
+      private double inputSA1; 
+      private double inputSA2;
+      double inputSAup;
+      double inputSA2up;
+      
+      public nonRightTriangle (double inputSA, double inputSA1, double inputSA2){  
+         this.inputSA = inputSA;
+         this.inputSA1 = inputSA1; 
+         this.inputSA2 = inputSA2;
+      }
+      
+      public void solveSideAngleAngle(){
+         angleB = 180 - (inputSA1 + inputSA2);
+         inputSA1 = Math.toRadians(inputSA1);
+         inputSA2 = Math.toRadians(inputSA2);
+         sideB = (inputSA * Math.sin(Math.toRadians(angleB)))/(Math.sin(inputSA2)); // law of sines method
+         sideB = Math.round((sideB) * 100.0) / 100;
+         answer = (inputSA * Math.sin(inputSA1))/(Math.sin(inputSA2));
+         answer = Math.round((answer) *100.0) / 100.0; // rounding the number.
+      }   
+      
+      public void solveSideSideAngle(){
+         inputSA2up = inputSA;
+         inputSA = inputSA/2;
+         inputSA = Math.acos((inputSA / inputSA1));
+         inputSA =  Math.toDegrees(inputSA);
+         angleA = 180- (inputSA + inputSA2); 
+         double angleAup = angleA;
+         angleA = Math.round((angleA) * 100) / 100; //round to the 0.1
+         answer = Math.round((inputSA) * 100) / 100;
+         angleAup = Math.toRadians(angleAup); // .... this compiler is making me do every part separate sometimes... for no reason ....
+         inputSA2 = Math.toRadians(inputSA2); // here and below again, it worked up there but don't work down here!
+         angleAup = Math.sin(angleAup);
+         inputSA2 = Math.sin(inputSA2);
+         sideA = (inputSA2up  * angleAup) / inputSA2; //  I just tested it, if i put the math(sin) and the toradians together i get a slightly different number...
+         sideA = Math.round((sideA) * 100) / 100;
+      }                                               // so i will keep it like this to get the right answer.....
+      
+      public void solveSideAngleSide(){
+         double angleAin = inputSA1;
+         inputSA1 = Math.toRadians(inputSA1);
+         angleB = inputSA1;
+         double sa2Up = inputSA;
+         inputSAup = Math.pow(inputSA ,2);
+         inputSA2up = Math.pow(inputSA2 ,2);
+         inputSAup = inputSAup + inputSA2up;
+         inputSA1 = Math.cos(inputSA1);
+         answer = inputSAup -2 * inputSA * inputSA2* inputSA1;    // sqrt method
+         angleB = Math.asin((sa2Up)*(Math.sin(angleB))/sqrt(answer)); 
+         angleB = Math.round(Math.toDegrees(angleB));
+         angleC = 180 - (angleB+ angleAin);
+         answer = Math.round(sqrt(answer));
+         
+         
+      } 
+      
+      public void solveSideSideSide(){
+         inputSAup  = Math.pow(inputSA, 2) - Math.pow(inputSA1, 2) - Math.pow(inputSA2, 2);
+         inputSA2up = -2*inputSA1*inputSA2;
+         answer = Math.acos(inputSAup / inputSA2up);
+         
+         answer = Math.round(Math.toDegrees(answer));
+         
+         angleA = Math.sin(Math.toRadians(answer));
+         angleA = Math.asin((inputSA2 *angleA) /inputSA); // law of sines method
+         angleA = Math.round(Math.toDegrees(angleA));
+         angleC = 180 - (angleA + answer);
+      }      
+}
+
+
+public class trigCalculator extends JFrame implements ActionListener{
+   
+   //showLabel m = new showLabel(); // my  showLabel interface, was going to use it but it cannot be found!
+   JButton submitBtn= new JButton("Solve");
+   JButton exitBtn= new JButton("Exit");
+   final String DEG  = "\u00b0";
+   JLabel heading= new JLabel("Right Triangle");
+   JLabel toppingsHeading= new JLabel("Non-right Triangle");
+   
+   JTextField TriInput= new JTextField(5);
+   JTextField TriInput1= new JTextField(5);
+   JTextField TriInput2= new JTextField(5);
+   
+   String[] rightTriS = { "a/B"+DEG, "b/B"+DEG, "a/b", "c/B"+DEG};
+   JComboBox rightTriCombo= new JComboBox(rightTriS); 
+   
+   String[] nonRightTriS = { "SAA(cA"+DEG+"C"+DEG+")", "SSA(cbC"+DEG+")", "SAS(bA"+DEG+"c)", "SSS(bca)"};
+   JComboBox nonRightTriCombo= new JComboBox(nonRightTriS); 
+   
+   JLabel A = new JLabel("A"); // labels for the triangle
+   JLabel B = new JLabel("B");
+   JLabel C = new JLabel("C");
+   JLabel a = new JLabel("a");
+   JLabel b = new JLabel("b");
+   JLabel c = new JLabel("c");
+   
+   JLabel angleA = new JLabel("Angle A: "); // output answers!
+   JLabel angleB = new JLabel("Angle B: ");
+   JLabel angleC = new JLabel("Angle C: ");
+   JLabel sideA = new JLabel("Side a: ");
+   JLabel sideB = new JLabel("side b: ");
+   JLabel sideC = new JLabel("side c: ");
+   
+   JLabel TIP = new JLabel("TIP: Triangles are shown as examples!");
+   JLabel enterInfo = new JLabel("<html>HOW to enter: Use the drop-down box and match <br> your numbers!<html>");    
+           
+   JRadioButton button1 = new JRadioButton("Right triangle");;
+   JRadioButton button2 = new JRadioButton("Non-right triangle");;
+   
+   ButtonGroup group = new ButtonGroup();
+   
+   JLabel rightTriangle = new JLabel();
+   JLabel triangle = new JLabel();
+   
+  
+   public trigCalculator(){
+      super("Pizza order");
+      setSize(460,400); 
+      setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      setLocationRelativeTo(null);
+      super.setLayout(null);
+      //JLabel heading= new JLabel("Right Triangle");
+      heading.setFont(new Font("Consolas", Font.BOLD,15));
+      heading.setBounds(30,10,1000,40);
+      add(heading);
+           
+      rightTriCombo.addActionListener(this);
+      rightTriCombo.setSelectedIndex(3);
+      rightTriCombo.setBounds(17,230,100,20);
+      rightTriCombo.setSelectedIndex(0);
+      add(rightTriCombo);     
+      
+      nonRightTriCombo.addActionListener(this);
+      nonRightTriCombo.setSelectedIndex(3);
+      nonRightTriCombo.setBounds(17,230,100,20);
+      nonRightTriCombo.setSelectedIndex(0);
+      add(nonRightTriCombo);  
+      nonRightTriCombo.setVisible(false);
+      
+      button1.setSelected(true);
+      group.add(button1);
+      group.add(button2);
+      button1.setBounds(200,10,110,30);
+      button2.setBounds(308,10,150,30);
+      add(button1);
+      add(button2);
+      button1.addActionListener(this);
+      button2.addActionListener(this);
+      
+      TriInput.setBounds(220,130,100,20);
+      add(TriInput);
+      TriInput.addActionListener(this);
+      
+      TriInput1.setBounds(220,155,100,20);
+      add(TriInput1);
+      TriInput1.addActionListener(this);
+
+      TriInput2.setBounds(220,180,100,20);
+      add(TriInput2);
+      TriInput2.addActionListener(this);
+      TriInput2.setVisible(false);
+      
+      //JLabel toppingsHeading= new JLabel("Non-right Triangle");
+      toppingsHeading.setFont(new Font("Consolas", Font.BOLD,15));
+      toppingsHeading.setBounds(30,10,1000,40);
+      add(toppingsHeading);
+      toppingsHeading.setVisible(false);
+      
+      
+      //JLabel label = new JLabel();
+      rightTriangle.setIcon(new ImageIcon("rightTriangle.png"));
+      rightTriangle.setBounds(5, 30,210,210);
+      add(rightTriangle);
+      rightTriangle.setVisible(true);
+      
+      A.setBounds(100,40,100,20); // Had to do all of this extra work because 
+      B.setBounds(193,203,100,20); // i couldnt find an picture with the letterd drawn
+      C.setBounds(12,203,100,20);
+      a.setBounds(100,203,100,20);
+      b.setBounds(50,115,100,20);
+      c.setBounds(150,115,100,20);
+      TIP.setBounds(10,280,400,20);
+      add(A);
+      add(B);
+      add(C);
+      add(a);
+      add(b);
+      add(c);
+      add(TIP);
+      A.setVisible(false);
+      B.setVisible(false);
+      C.setVisible(false);
+      a.setVisible(false);
+      b.setVisible(false);
+      c.setVisible(false);
+      
+      
+      angleA.setBounds(320,40,100,20); // Had to do all of this extra work because 
+      angleB.setBounds(320,70,100,20); // i couldnt find an picture with the letterd drawn
+      angleC.setBounds(320,110,100,20);
+      sideA.setBounds(320,140,100,20);
+      sideB.setBounds(320,170,100,20);
+      sideC.setBounds(320,210,100,20);
+      add(angleA);
+      add(angleB);
+      add(angleC);
+      add(sideA);
+      add(sideB);
+      add(sideC);
+      
+      enterInfo.setFont(new Font("Consolas", Font.PLAIN,11));
+      enterInfo.setBounds(215,30,100,100);
+      add(enterInfo);
+      
+      triangle.setIcon(new ImageIcon("Triangle.png"));
+      triangle.setBounds(5, 30,210,210);
+      add(triangle);
+      triangle.setVisible(false);
+      
+      
+      submitBtn.setBounds(270,250,140,30); // X Y W H
+      exitBtn.addActionListener(this);
+      exitBtn.setBounds(270,280,140,30);
+      submitBtn.addActionListener(this);
+      add(submitBtn); // add button
+      add(exitBtn);
+      
+      submitBtn.setToolTipText("Solve! ");
+      
+   }
+   
+public void actionPerformed(ActionEvent e){
+   // AGAIN all NUMBERS ARE ROUNDED... ( my math teacher had us do that)  so... yeah.
+   Object source = e.getSource();
+   if ( source == exitBtn)
+      System.exit(0);
+   else {          
+   double firstNum = 0 ;
+   double secondNum = 0 ; 
+   double thirdNum = 0;  
+   String inputOK;
+      if (button1.isSelected()){
+         TriInput2.setVisible(false);
+         rightTriangle.setVisible(true);
+         heading.setVisible(true);
+         rightTriCombo.setVisible(true);
+         nonRightTriCombo.setVisible(false);
+         triangle.setVisible(false);
+         toppingsHeading.setVisible(false);
+         A.setVisible(false);
+         B.setVisible(false);
+         C.setVisible(false);
+         a.setVisible(false);
+         b.setVisible(false);
+         c.setVisible(false);
+         
+         if( source == submitBtn){
+               try {
+               firstNum = Double.parseDouble(TriInput.getText());
+               secondNum = Double.parseDouble(TriInput1.getText());
+               
+               } catch (NumberFormatException s) {  // Already checks if it is empty  so i don't really need that bollean ok rule thing!
+                   System.out.println("false");
+                   s.printStackTrace(); //prints error
+                   JOptionPane.showMessageDialog(null,"You left the boxes empty OR enered in a string, please enter numbers!");
+                   firstNum=Double.parseDouble(TriInput.getText());
+                   secondNum = Double.parseDouble(TriInput1.getText());
+               }
+                        
+            rightTriangle angleSide = new rightTriangle(firstNum, secondNum);
+       
+            if (rightTriCombo.getSelectedIndex() == 0) {
+                   angleSide.solveSideAngle(); // inputs side b,Angle A   
+                   sideA.setText("Side a: "+ firstNum);
+                   sideB.setText("Side b: "+ angleSide.getAnswer());
+                   sideC.setText("Side c: "+ angleSide.getSideC());    
+                   angleA.setText("angle A: "+ angleSide.getAngleA());
+                   angleB.setText("angle B: "+ secondNum);
+                   angleC.setText("angle C: "+ angleSide.getAngleC()); 
+            }
+            else if (rightTriCombo.getSelectedIndex() == 1) {
+                   angleSide.solveOppSideAngle(); // inputs side a ,Angle A    
+                   sideA.setText("Side a: "+ angleSide.getAnswer());
+                   sideB.setText("Side b: "+ firstNum);
+                   sideC.setText("Side c: "+ angleSide.getSideC());    
+                   angleA.setText("angle A: "+ angleSide.getAngleA());
+                   angleB.setText("angle B: "+ secondNum);
+                   angleC.setText("angle C: "+ angleSide.getAngleC());
+            }
+            else if (rightTriCombo.getSelectedIndex() == 2) {
+                   angleSide.solveSideSide();
+                   sideA.setText("Side a: "+ firstNum);
+                   sideB.setText("Side b: "+ secondNum);
+                   sideC.setText("Side c: "+ angleSide.getSideC());    
+                   angleA.setText("angle A: "+ angleSide.getAnswer());
+                   angleB.setText("angle B: "+ angleSide.getAngleB());
+                   angleC.setText("angle C: "+ angleSide.getAngleC());
+            }
+            else if (rightTriCombo.getSelectedIndex() == 3) {  
+                   angleSide.solveHypAngle();    
+                   sideA.setText("Side a: "+ angleSide.getAnswer());
+                   sideB.setText("Side b: "+ angleSide.getSideB());
+                   sideC.setText("Side c: "+ firstNum);    
+                   angleA.setText("angle A: "+ angleSide.getAngleA());
+                   angleB.setText("angle B: "+ secondNum);
+                   angleC.setText("angle C: "+ angleSide.getAngleC()); 
+            }
+           
+         }
+      }
+      else if(button2.isSelected()){
+            TriInput2.setVisible(true);
+            rightTriangle.setVisible(false);
+            heading.setVisible(false);
+            rightTriCombo.setVisible(false);
+            nonRightTriCombo.setVisible(true);
+            triangle.setVisible(true);
+            toppingsHeading.setVisible(true);
+            A.setVisible(true);
+            B.setVisible(true);
+            C.setVisible(true);
+            a.setVisible(true);
+            b.setVisible(true);
+            c.setVisible(true);
+            
+        if( source == submitBtn){
+               try {
+               firstNum = Double.parseDouble(TriInput.getText());
+               secondNum = Double.parseDouble(TriInput1.getText());
+               thirdNum = Double.parseDouble(TriInput2.getText());
+               
+               } catch (NumberFormatException s) {  // Already checks if it is empty  so i don't really need that bollean ok rule thing!
+                   System.out.println("false");
+                   s.printStackTrace(); //prints error
+                   JOptionPane.showMessageDialog(null,"You left the boxes empty OR enered in a string, please enter numbers!");
+                   firstNum=Double.parseDouble(TriInput.getText());
+                   secondNum = Double.parseDouble(TriInput1.getText());
+                   thirdNum = Double.parseDouble(TriInput2.getText());
+               }
+               
+            nonRightTriangle angleSide = new nonRightTriangle(firstNum, secondNum,thirdNum);
+       
+            if (nonRightTriCombo.getSelectedIndex() == 0) {
+                  angleSide.solveSideAngleAngle(); // cBC
+                  sideA.setText("Side a: "+ angleSide.getAnswer());
+                  sideB.setText("Side b: "+ angleSide.getSideB());
+                  sideC.setText("Side c: "+ firstNum);    
+                  angleA.setText("angle A: "+ secondNum);
+                  angleB.setText("angle B: "+ angleSide.getAngleB());
+                  angleC.setText("angle C: "+ thirdNum);
+            }
+            else if (nonRightTriCombo.getSelectedIndex() == 1) {
+                  angleSide.solveSideSideAngle();
+                  sideA.setText("Side a: "+ angleSide.getSideA());
+                  sideB.setText("Side b: "+ secondNum);
+                  sideC.setText("Side c: "+ firstNum);    
+                  angleA.setText("angle A: "+ angleSide.getAngleA());
+                  angleB.setText("angle B: "+ angleSide.getAnswer());
+                  angleC.setText("angle C: "+ thirdNum);
+            }
+            else if (nonRightTriCombo.getSelectedIndex() == 2) {
+                  angleSide.solveSideAngleSide();
+                  sideA.setText("Side a: "+ angleSide.getAnswer());
+                  sideB.setText("Side b: "+ firstNum);
+                  sideC.setText("Side c: "+ thirdNum);    
+                  angleA.setText("angle A: "+ secondNum);
+                  angleB.setText("angle B: "+ angleSide.getAngleB());
+                  angleC.setText("angle C: "+ angleSide.getAngleC2());
+            }
+            else if (nonRightTriCombo.getSelectedIndex() == 3) {  
+                  angleSide.solveSideSideSide();
+                  sideA.setText("Side a: "+ thirdNum);
+                  sideB.setText("Side b: "+ firstNum);
+                  sideC.setText("Side c: "+ secondNum);    
+                  angleA.setText("angle A: "+ angleSide.getAngleA());
+                  angleB.setText("angle B: "+ angleSide.getAnswer());
+                  angleC.setText("angle C: "+ angleSide.getAngleC2());
+            }        
+         }
+        }
+      }
+   }
+public static void main(String[]args){
+   trigCalculator frame = new trigCalculator();
+   frame.setVisible(true);
+  } 
+}
