@@ -14,7 +14,7 @@ class Player{
 		int amountTurns;
 		int ranking;
 		int age;
-		int level;			/// Didn't use a lot of stuff that I did not need since its one player game!
+		int level;			
 		float winnings;
 		float betAmount;
 		vector<int> scores;
