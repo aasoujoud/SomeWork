@@ -1,0 +1,10 @@
+Simple Create table statement I used, copy paste it to save you some time!
+
+CREATE TABLE IF NOT EXISTS midterm (
+  cid BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  carMake VARCHAR(50) NULL DEFAULT'',
+  carModel VARCHAR(50) NULL DEFAULT'',
+  carPrice float NOT NULL,
+  carYear int NOT NULL,
+  PRIMARY KEY (cid)
+);
