@@ -5,9 +5,7 @@
 #include <cctype>
 #include <fstream>
 
-using namespace std;   /// I really Did not have ANY IDEA what kind of program I wanted and i looked online but couldnt find any
-						// So i decided why not do a mashup of everything that would be similar to a "final exam", nothing compilcated . 
-						// ALSO, I DO NOT HAVE ANY USE for a template, I understand it and it is a very easy thing to do but I really couldn't mashup that when i Used other stuff!
+using namespace std;   
 class AutoMobile{
 	private:
 	  string type;
@@ -81,8 +79,8 @@ class Trucks: public AutoMobile{
          if (seats > 6) {
          	setCost(500 + truckCost);
 		 }
-         AutoMobile::autoCostCalculator();				// So i finally figured out how to call the base(parent) class's functions (overloading)
-      }													//looked online everywhere for the creature program but couldnt find it... so i threw that and it worked.. magically.
+         AutoMobile::autoCostCalculator();				
+      }													
 };
 
 class Cars: public AutoMobile{
@@ -99,7 +97,7 @@ class Cars: public AutoMobile{
 		 else if(doors == 2){
 		 	setCost(200+ carCost);
 		 }
-         AutoMobile::autoCostCalculator();				// So i finally figured out how to call the base(parent) class's functions (overloading)
+         AutoMobile::autoCostCalculator();				
       }		
 };
 
@@ -323,7 +321,7 @@ int main(void) {
     while(OPTION != 4){
     	try{
 		cout<<"\nWhat would you like to do? \n(0- Remove from Inventory)\n(1- Add Vechiles to inventory)\n(2- Display Vechiles in inventory)\n(3- Load Vechiles from a file into inventory!)\n(4-Just exit....?))"<<endl;
-		cin>>OPTION;			// I WANt to load from file but i dont know if i have time, i will try!
+		cin>>OPTION;			
 		
 		if (OPTION < 0 || OPTION > 4)
 			throw 1000;
