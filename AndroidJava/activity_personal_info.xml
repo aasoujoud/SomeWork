@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white">
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="10dp"
+        android:orientation="horizontal"
+        >
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/tabTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/darker_gray"
+                android:text="Fill in your personal info"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textSize="30dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/nameTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/background_light"
+                android:text="Name"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textSize="25dp" />
+
+            <EditText
+                android:id="@+id/suffixEditText"
+                android:layout_width="331dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Enter suffix ( Ex. 'Mr' 'Mrs' 'Jr' )"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/lastNameEditText"
+                android:layout_width="331dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Enter last name"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/middleInitialEditText"
+                android:layout_width="175dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Enter middle initial"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/firstNameEditText"
+                android:layout_width="331dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Enter first name"
+                android:inputType="textPersonName" />
+
+
+            <TextView
+                android:id="@+id/addressTagTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/background_light"
+                android:text="Address"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textSize="25dp" />
+
+            <EditText
+                android:id="@+id/addressEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Street (Include Apt. # or P.O. Box) "
+                android:inputType="textPostalAddress" />
+
+            <EditText
+                android:id="@+id/CityEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Enter city"
+                android:inputType="none" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/zipCodeEditText"
+                    android:layout_width="255dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Enter zip code"
+                    android:inputType="none" />
+
+                <Spinner
+                    android:id="@+id/stateSpinner"
+                    android:layout_width="105dp"
+                    android:layout_height="wrap_content"
+                    android:spinnerMode="dropdown"></Spinner>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/phoneTagTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/background_light"
+                android:text="Phone Number"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textSize="20dp" />
+
+            <EditText
+                android:id="@+id/homePhoneEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Home phone (Ex.123456789)"
+                android:inputType="phone" />
+
+            <EditText
+                android:id="@+id/cellPHoneEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint=" Cell phone (Ex.123456789)"
+                android:inputType="phone" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/TshirtSizeTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="T-shirt Size (SELECT FRM DROPDOWN) "
+                    android:textAlignment="center"
+                    android:textColor="@android:color/black" />
+
+                <Spinner
+                    android:id="@+id/tshirtSizeSpinner"
+                    android:layout_width="125dp"
+                    android:layout_height="wrap_content"
+                    android:spinnerMode="dropdown"></Spinner>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/birthDateTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Birth Date:  "
+                    android:textAlignment="center"
+                    android:textColor="@android:color/black" />
+
+                <EditText
+                    android:id="@+id/birthDateEditText"
+                    android:layout_width="301dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Month/Date/Year"
+                    android:textStyle="italic"
+                    android:inputType="date" />
+            </LinearLayout>
+            <TextView
+                android:id="@+id/birthDateInfoTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="(Must be at least 18 years old by June 1,2018 or 16 if accompanied by adult relative)"
+                android:textColor="@color/design_default_color_primary_dark"
+                android:textSize="12sp" />
+            <TextView
+                android:id="@+id/birthLocationTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Birth Location (City, State/Providence, Country)"
+                android:textSize="17dp"
+                android:textColor="@android:color/black" />
+            <EditText
+                android:id="@+id/birthLocationEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Enter birth location" />
+
+            <TextView
+                android:id="@+id/assignedAreaTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Which area were you assigned in 2017 ?"
+                android:textSize="17dp"
+                android:textColor="@android:color/black" />                 // Year needs to be changed every year !
+            <EditText
+                android:id="@+id/assignedAreaEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Previous assignment" />
+            <TextView
+                android:id="@+id/learnAboutTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="How did you learn about the DGPA ?"
+                android:textSize="17dp"
+                android:textColor="@android:color/black" />
+            <EditText
+                android:id="@+id/learnAboutEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="How did you learn about the DGPA ?" />
+            <TextView
+                android:id="@+id/previousVolunteerExpTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Previous Volunteer Experience :"
+                android:textSize="17dp"
+                android:textColor="@android:color/black" />
+            <EditText
+                android:id="@+id/previousVolunteerExpEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Enter in previous volunteer exprience" />
+
+            <TextView
+                android:id="@+id/committeInterestTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="are you interested in standing on a committee (Management Training,Orientation,Promotions,Recruitment,Social,etc.) ?"
+                android:textSize="13dp"
+                android:textColor="@android:color/black" />                 // Year needs to be changed every year !
+            <EditText
+                android:id="@+id/committeInterestEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Enter in committee " />
+            <TextView
+                android:id="@+id/assignedWithTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="If there are one or more DPGA members you wish to be assigned with, please list their names:(Assignments with friends cannot be guaranteed;however,every attempt will be made to fulfill such requests)"
+                android:textSize="17dp"
+                android:textColor="@android:color/black" />
+            <EditText
+                android:id="@+id/assignWithEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Enter all names with a space in between!" />
+            <Button
+                android:id="@+id/nextBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="next"
+                android:backgroundTint="@android:color/holo_blue_bright" />
+
+
+
+
+
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+
+</android.support.constraint.ConstraintLayout>
